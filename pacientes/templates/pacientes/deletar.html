@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Excluir Paciente{% endblock %}
+
+{% block content %}
+<h2>Excluir Paciente</h2>
+
+<p>Tem certeza que deseja excluir <strong>{{ paciente.nome }}</strong>?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger">Excluir</button>
+    <a href="{% url 'listar_pacientes' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

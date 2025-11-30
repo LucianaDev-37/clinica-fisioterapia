@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Estagiários{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Lista de Estagiários</h2>
+
+<a href="/estagiarios/cadastrar/" class="btn btn-primary mb-3">Cadastrar Estagiário</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for estagiario in estagiarios %}
+        <tr>
+            <td>{{ estagiario.user.username }}</td>
+            <td>{{ estagiario.user.email }}</td>
+            <td>
+                <a href="/estagiarios/{{ estagiario.id }}/" class="btn btn-info btn-sm">Ver</a>
+                <a href="/estagiarios/{{ estagiario.id }}/editar/" class="btn btn-warning btn-sm">Editar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhum estagiário encontrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

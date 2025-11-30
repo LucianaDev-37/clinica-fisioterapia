@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Estagiário{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Editar Estagiário</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="/estagiarios/" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

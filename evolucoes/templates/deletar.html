@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir Evolução{% endblock %}
+
+{% block content %}
+<h2>Tem certeza que deseja excluir esta evolução?</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <button class="btn btn-danger">Excluir</button>
+    <a href="{% url 'listar_evolucoes' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

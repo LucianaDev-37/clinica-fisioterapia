@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Evoluções{% endblock %}
+
+{% block content %}
+<h2>Evoluções dos Pacientes</h2>
+
+<a class="btn btn-primary mb-3" href="{% url 'cadastrar_evolucao' %}">Registrar Nova Evolução</a>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Paciente</th>
+        <th>Estagiário</th>
+        <th>Data</th>
+        <th>Descrição</th>
+        <th>Ações</th>
+    </tr>
+
+    {% for ev in evolucoes %}
+    <tr>
+        <td>{{ ev.paciente.nome }}</td>
+        <td>{{ ev.estagiario.nome }}</td>
+        <td>{{ ev.data|date:"d/m/Y H:i" }}</td>
+        <td>{{ ev.descricao }}</td>
+        <td>
+            <a class="btn btn-warning btn-sm" href="{% url 'editar_evolucao' ev.id %}">Editar</a>
+            <a class="btn btn-danger btn-sm" href="{% url 'deletar_evolucao' ev.id %}">Excluir</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

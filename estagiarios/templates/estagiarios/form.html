@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastrar Estagiário{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Cadastrar Estagiário</h2>
+    <hr>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{% url 'listar_estagiarios' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

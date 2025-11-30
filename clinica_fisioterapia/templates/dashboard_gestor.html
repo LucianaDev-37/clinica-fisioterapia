@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard do Gestor{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Dashboard do Gestor</h2>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card bg-primary text-white mb-3">
+            <div class="card-body">
+                <h5>Total de Pacientes</h5>
+                <h3>{{ total_pacientes }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-success text-white mb-3">
+            <div class="card-body">
+                <h5>Total de Estagiários</h5>
+                <h3>{{ total_estagiarios }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-warning text-white mb-3">
+            <div class="card-body">
+                <h5>Agendamentos</h5>
+                <h3>{{ total_agendamentos }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-danger text-white mb-3">
+            <div class="card-body">
+                <h5>Evoluções Registradas</h5>
+                <h3>{{ total_evolucoes }}</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr>
+
+<h4>Atalhos</h4>
+
+<div class="list-group">
+    <a href="/pacientes/" class="list-group-item list-group-item-action">Gerenciar Pacientes</a>
+    <a href="/estagiarios/" class="list-group-item list-group-item-action">Gerenciar Estagiários</a>
+    <a href="/agendamentos/" class="list-group-item list-group-item-action">Ver Agendamentos</a>
+    <a href="/evolucoes/" class="list-group-item list-group-item-action">Histórico de Evoluções</a>
+</div>
+
+{% endblock %}

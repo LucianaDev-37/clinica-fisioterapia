@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Evolução{% endblock %}
+
+{% block content %}
+<h2>Editar Evolução</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button class="btn btn-primary">Atualizar</button>
+</form>
+
+{% endblock %}

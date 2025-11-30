@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Agendamento{% endblock %}
+
+{% block content %}
+<h2>Editar Agendamento</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button class="btn btn-primary">Atualizar</button>
+</form>
+
+{% endblock %}

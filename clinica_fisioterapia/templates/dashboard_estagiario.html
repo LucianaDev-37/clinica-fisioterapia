@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard do Estagiário{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Dashboard do Estagiário</h2>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card bg-primary text-white mb-3">
+            <div class="card-body">
+                <h5>Pacientes</h5>
+                <h3>{{ total_pacientes }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-warning text-white mb-3">
+            <div class="card-body">
+                <h5>Agendamentos</h5>
+                <h3>{{ total_agendamentos }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-success text-white mb-3">
+            <div class="card-body">
+                <h5>Evoluções</h5>
+                <h3>{{ total_evolucoes }}</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr>
+
+<h4>Meus Atalhos</h4>
+
+<div class="list-group">
+    <a href="/pacientes/" class="list-group-item list-group-item-action">Listar Pacientes</a>
+    <a href="/agendamentos/" class="list-group-item list-group-item-action">Agendamentos</a>
+    <a href="/evolucoes/" class="list-group-item list-group-item-action">Registrar Evolução</a>
+</div>
+
+{% endblock %}
