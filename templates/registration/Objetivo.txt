@@ -1,0 +1,79 @@
+Objetivos:
+Projeto: Chat de IA para Atendimento Bancário
+
+Criar um assistente virtual bancário que:
+
+Entenda perguntas em linguagem natural
+
+Responda dúvidas frequentes (FAQ)
+
+Seja seguro (sem dados sensíveis)
+
+Encaminhe para atendimento humano quando necessário
+
+Escopo simples e correto:
+
+A IA PODE:
+
+Explicar produtos bancários
+
+Informar horários, taxas, tipos de conta
+
+Orientar sobre próximos passos
+
+A IA NÃO PODE:
+
+Fazer transações
+
+Pedir senha, CPF, token
+
+Acessar dados reais de clientes
+
+Frase de escopo:
+
+“Chatbot de IA para atendimento bancário, focado em dúvidas gerais e orientação ao cliente, respeitando normas de segurança e privacidade.”
+
+Definir a arquitetura
+
+Usuário
+  ↓
+Interface de Chat (Web)
+  ↓
+API Backend (Python)
+  ↓
+Motor de IA + Base de Conhecimento
+
+Tecnologias escolhidas
+
+✔ Backend: Python + FastAPI
+✔ IA: Processamento de Linguagem Natural (PLN)
+✔ Base de conhecimento: FAQ em JSON ou banco simples
+✔ Frontend: HTML + CSS + JS (chat simples)
+
+
+Fonte Vídeo: 
+https://youtu.be/AGi0r-S_HEA?si=tMqOdyj3WhJCI5Kh
+https://youtu.be/n113nvBuySI?si=GQHPzWa1IJJp-cKV
+https://youtu.be/3DBZOrgr-rw?si=QQ3yQDGnw3IZ1zOM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
