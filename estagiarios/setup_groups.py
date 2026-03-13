@@ -1,3 +1,4 @@
+#controle de acesso baseado em papeis 
 # estagiarios/setup_groups.py
 from django.contrib.auth.models import Group, Permission, User
 from django.contrib.contenttypes.models import ContentType

@@ -1,63 +1,48 @@
-Objetivos:
-Projeto: Chat de IA para Atendimento Bancário
+DOCUMENTO DE OBJECTIVO: SISTEMA DE GESTÃO - CLÍNICA DE FISIOTERAPIA
+1. VISÃO GERAL
+Desenvolver um sistema web para automatizar a gestão de uma clínica de fisioterapia, integrando o controlo administrativo de estagiários com o acompanhamento clínico de pacientes.
 
-Criar um assistente virtual bancário que:
+2. OBJECTIVOS PRINCIPAIS (MVP - Mínimo Produto Viável)
 
-Entenda perguntas em linguagem natural
+Controlo de Acesso (RBAC): Implementar diferentes níveis de permissão para Gestores e Estagiários.
 
-Responda dúvidas frequentes (FAQ)
+Gestão de Estagiários: Cadastro, monitorização e organização dos alunos em prática clínica.
 
-Seja seguro (sem dados sensíveis)
+Segurança de Dados: Garantir que apenas utilizadores autenticados acedam a informações sensíveis.
 
-Encaminhe para atendimento humano quando necessário
+Interface Intuitiva: Utilizar Bootstrap para criar um ambiente de trabalho ágil e responsivo.
 
-Escopo simples e correto:
+3. RECURSOS TÉCNICOS
 
-A IA PODE:
+Backend: Python / Django 5.x.
 
-Explicar produtos bancários
+Frontend: HTML5, CSS3, Bootstrap 5.
 
-Informar horários, taxas, tipos de conta
+Base de Dados: SQLite (Desenvolvimento).
 
-Orientar sobre próximos passos
+Arquitetura: MVC (Model-View-Template).
 
-A IA NÃO PODE:
+4. ROADMAP E EXPANSÃO (Projectos Futuros)
 
-Fazer transações
+Módulo de IA (Integração LucyAcessível-Versão clínica): O sistema foi projectado de forma modular para permitir a futura integração de um Assistente Virtual de IA.
 
-Pedir senha, CPF, token
+Função: Suporte ao paciente para dúvidas sobre exercícios e agendamentos.
 
-Acessar dados reais de clientes
+Tecnologia: Baseado em Processamento de Linguagem Natural (PLN).
 
-Frase de escopo:
+Gestão de Prontuários: Digitalização completa das evoluções clínicas.
 
-“Chatbot de IA para atendimento bancário, focado em dúvidas gerais e orientação ao cliente, respeitando normas de segurança e privacidade.”
+Por que escrever desta forma?
+Separação de Preocupações: Você deixa claro que o sistema da clínica é uma coisa e a IA é outra, mas que elas podem "conversar" no futuro.
 
-Definir a arquitetura
+Visão de Engenheira: Ao usar termos como "MVP", "RBAC" e "Modular", você demonstra que entende como um software é planeado no mercado de trabalho.
 
-Usuário
-  ↓
-Interface de Chat (Web)
-  ↓
-API Backend (Python)
-  ↓
-Motor de IA + Base de Conhecimento
+Portfólio: No GitHub, isso mostra que você sabe planear o crescimento de um sistema sem precisar de misturar todo o código de uma vez.
 
-Tecnologias escolhidas
+Dica prática para o seu VS Code:
+Mova este arquivo para a pasta raiz do seu projecto (fora da pasta registration). O lugar ideal é na mesma pasta onde está o arquivo manage.py.
 
-✔ Backend: Python + FastAPI
-✔ IA: Processamento de Linguagem Natural (PLN)
-✔ Base de conhecimento: FAQ em JSON ou banco simples
-✔ Frontend: HTML + CSS + JS (chat simples)
-
-
-Fonte Vídeo: 
-https://youtu.be/AGi0r-S_HEA?si=tMqOdyj3WhJCI5Kh
-https://youtu.be/n113nvBuySI?si=GQHPzWa1IJJp-cKV
-https://youtu.be/3DBZOrgr-rw?si=QQ3yQDGnw3IZ1zOM
-
-
-
+O que acha de agora darmos o próximo passo e colocar a tabela de estagiários no Painel do Carlos para ele já conseguir ver os dados? Quer que eu lhe mostre como buscar esses dados do banco para aparecerem na tela?
 
 
 

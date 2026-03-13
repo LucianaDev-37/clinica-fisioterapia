@@ -2,17 +2,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger: Django",
+            "name": "Django",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}\\manage.py",
+            "program": "${workspaceFolder}/manage.py",
             "args": [
-                "runserver",
-                "8000"
+                "runserver"
             ],
             "django": true,
-            "console": "integratedTerminal",
-            "python": "${workspaceFolder}\\venv\\Scripts\\python.exe"
+            "autoReload": {
+                "enable": true
+            }
         }
     ]
 }

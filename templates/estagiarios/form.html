@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if form.instance.pk %}Editar Estagiário{% else %}Cadastrar Estagiário{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{% if form.instance.pk %}Editar{% else %}Cadastrar{% endif %} Estagiário</h2>
+    <hr>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'listar_estagiarios' %}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Cancelar/Voltar
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        {% if form.instance.pk %}Salvar Alterações{% else %}Confirmar Cadastro{% endif %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -9,14 +9,9 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-import pymysql
-pymysql.install_as_MySQLdb()
-import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Resolve o caminho da pasta raiz do projeto de forma simples
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -63,7 +58,7 @@ ROOT_URLCONF = 'clinica_fisioterapia.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ BASE_DIR / 'clinica_fisioterapia' / 'templates' ],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,7 +70,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'clinica_fisioterapia.wsgi.application'
 
 
@@ -83,20 +77,12 @@ WSGI_APPLICATION = 'clinica_fisioterapia.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
+    
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'clinica_fisioterapia',
-        'USER': 'root',
-        'PASSWORD': 'admin36',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -120,9 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -140,7 +126,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/redirecionar/'
 LOGOUT_REDIRECT_URL = '/'
-LOGIN_URL = '/login/'      # para login_required
-LOGIN_REDIRECT_URL = '/home/'  # após login
-LOGOUT_REDIRECT_URL = '/login/'  # após logout
-
+# Configurações de Autenticação
+LOGIN_URL = 'login' # Nome da URL da sua tela de login
+LOGIN_REDIRECT_URL = 'home_redirect'  # Nome da função que decide se vai para Gestor ou Estagiário
+LOGOUT_REDIRECT_URL = 'pagina_inicial' # Nome da URL da sua página de boas-vindas

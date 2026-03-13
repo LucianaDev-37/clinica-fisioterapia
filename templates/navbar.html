@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Clínica Fisioterapia</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                {% if user.is_authenticated %}
+                    {% if user.groups.all.0.name == 'Gestores' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/estagiarios/painel-gestores/">Início</a>
+                        </li>
+                    {% elif user.groups.all.0.name == 'Estagiarios' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/estagiarios/painel-estagiarios/">Início</a>
+                        </li>
+                    {% endif %}
+
+                    {% if user.groups.all.0.name == 'Gestores' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/estagiarios/">Estagiários</a>
+                        </li>
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pacientes/">Pacientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/agendamentos/">Agendamentos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/evolucoes/">Evoluções</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <span class="navbar-text text-white me-3">
+                            Olá, {{ user.username }}
+                        </span>
+                    </li> <li class="nav-item">
+                        <form action="/logout/" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link nav-link" style="text-decoration: none;">
+                                Sair
+                            </button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="/login/">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

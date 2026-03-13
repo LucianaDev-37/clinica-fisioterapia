@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir Estagiário{% endblock %}
+
+{% block content %}
+
+<h2>Excluir Estagiário</h2>
+
+<p>Tem certeza que deseja excluir o estagiário <strong>{{ estagiario.nome }}</strong>?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Excluir</button>
+    <a href="{% url 'listar_estagiarios' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

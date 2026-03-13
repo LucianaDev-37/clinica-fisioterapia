@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalhes do Estagiário{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Detalhes do Estagiário</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ estagiario.nome }}</h5>
+        <p class="card-text"><strong>Matrícula:</strong> {{ estagiario.matricula }}</p>
+        <p class="card-text"><strong>Email:</strong> {{ estagiario.email }}</p>
+        <p class="card-text"><strong>Telefone:</strong> {{ estagiario.telefone }}</p>
+        <p class="card-text"><strong>Curso:</strong> {{ estagiario.curso }}</p>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a href="{% url 'listar_estagiarios' %}" class="btn btn-secondary">Voltar para a Lista</a>
+</div>
+{% endblock %}
