@@ -14,7 +14,6 @@
             </div>
         </div>
     </div>
-
     <div class="col-md-3">
         <div class="card bg-success text-white mb-3 shadow-sm border-0">
             <div class="card-body">
@@ -23,7 +22,6 @@
             </div>
         </div>
     </div>
-
     <div class="col-md-3">
         <div class="card bg-warning text-dark mb-3 shadow-sm border-0">
             <div class="card-body">
@@ -32,7 +30,6 @@
             </div>
         </div>
     </div>
-
     <div class="col-md-3">
         <div class="card bg-danger text-white mb-3 shadow-sm border-0">
             <div class="card-body">
@@ -49,8 +46,73 @@
     <div class="col-md-10 mx-auto">
         <div class="card shadow-sm border-0 p-4">
             <h5 class="fw-bold text-muted mb-4 text-center">Resumo de Atividades da Clínica</h5>
-            <div style="position: relative; height: 350px;">
+            <div style="position: relative; height: 300px;">
                 <canvas id="graficoClinica"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 small fw-bold">Histórico de Alterações</h5>
+                <i class="bi bi-list-check"></i>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-3">Usuário</th>
+                                <th>Ação</th>
+                                <th>Data/Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for log in ultimos_logs %}
+                            <tr>
+                                <td class="ps-3"><strong>{{ log.usuario.username }}</strong></td>
+                                <td>
+                                    <span class="badge {% if log.acao == 'DELETE' %}bg-danger{% elif log.acao == 'CREATE' %}bg-success{% else %}bg-info{% endif %}">
+                                        {{ log.acao }}
+                                    </span>
+                                </td>
+                                <td><small class="text-muted">{{ log.data_hora|date:"d/m H:i" }}</small></td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="3" class="text-center py-3">Nenhum log registrado.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 border-start border-danger border-4">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 small fw-bold text-danger">Alertas de Segurança</h5>
+                <i class="bi bi-shield-exclamation text-danger"></i>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% for alerta in alertas_seguranca %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        <div>
+                            <span class="text-danger fw-bold">{{ alerta.usuario.username }}</span> 
+                            <small class="d-block text-muted">Tentou acessar: {{ alerta.pagina_tentada }}</small>
+                        </div>
+                        <span class="badge rounded-pill bg-light text-danger">{{ alerta.data_hora|date:"H:i" }}</span>
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item text-center text-success border-0 py-4">
+                        <i class="bi bi-check-circle-fill"></i> Nenhuma atividade suspeita.
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
