@@ -1,30 +1,36 @@
-Atividade Extensionista: Sistema de Gestão para Clínica de Fisioterapia
-📋 Sobre o Projeto
-Este software foi desenvolvido como parte da disciplina de Atividade Extensionista do curso de Engenharia de Software (UNINTER). O objetivo é automatizar processos administrativos e clínicos de uma unidade de fisioterapia, permitindo o gerenciamento eficiente de estagiários e o acompanhamento detalhado da evolução dos pacientes.
+# 🏥 Sistema de Gestão para Clínica Escola de Fisioterapia
 
-🛠️ Tecnologias Utilizadas
-Linguagem: Python 3.x
+## 📋 Sobre o Projeto
+Este software foi desenvolvido como parte da disciplina de **Atividade Extensionista do curso de Engenharia de Software (UNINTER)**. O projeto visa automatizar processos administrativos e clínicos, unindo a gestão acadêmica à segurança de dados em um ambiente de saúde.
 
-Framework Web: Django 5.x
+## 🛠️ Tecnologias Utilizadas
+* **Backend:** Python 3.x + Django Framework
+* **Frontend:** HTML5, CSS3, Bootstrap 5 (Design Moderno e Responsivo)
+* **Banco de Dados:** SQLite (Desenvolvimento)
+* **Ícones:** Bootstrap Icons
 
-Banco de Dados: SQLite (Ambiente de Desenvolvimento)
+## 🔐 Funcionalidades e Diferenciais Técnicos
 
-Frontend: HTML5, CSS3 e Bootstrap 5 (Interface Responsiva)
+### 1. Controle de Acesso Inteligente (RBAC)
+O sistema diferencia as jornadas de usuário para garantir a privacidade dos dados:
+* **Perfil Gestor:** Painel analítico com métricas de pacientes, agendamentos e controle total de estagiários.
+* **Perfil Estagiário:** Interface otimizada para produtividade, foco em atendimentos diários e registros de evolução.
 
-🔐 Funcionalidades Implementadas
-Autenticação e Autorização (RBAC): Sistema de login seguro com níveis de acesso diferenciados:
+### 2. Módulo de Segurança e Auditoria (Novo!)
+Implementação de um sistema de monitoramento de logs:
+* **Detecção de Intrusão:** Registro automático de tentativas de acesso a URLs restritas.
+* **Dashboard de Alertas:** Gráfico de tendências de alertas e tabela detalhada de incidentes para o gestor.
+* **Exportação CSV:** Ferramenta integrada para gerar relatórios de auditoria em conformidade com boas práticas de gestão de dados.
 
-Perfil Gestor (Carlos): Acesso administrativo total, controle de usuários e relatórios.
+### 3. Gestão Clínica Completa
+* Gerenciamento de prontuários de pacientes.
+* Registro e histórico de evoluções fisioterapêuticas.
+* Controle dinâmico de agendamentos.
 
-Perfil Estagiário (Ana): Foco no atendimento clínico e registro de evoluções.
+## 🚀 Próximos Passos (Roadmap)
+* **Integração LucyAcessível IA:** Assistente de consulta rápida para protocolos clínicos baseado em motores de regras.
+* **Sistema de Confirmação:** Implementação de Modais para segurança em operações de exclusão de dados.
 
-Arquitetura MVC: Estruturação seguindo o padrão Model-View-Template do Django para garantir manutenibilidade e escalabilidade.
-
-🚀 Roadmap e Inovação
-O projeto possui uma arquitetura modular que permite a integração futura com novos serviços:
-
-Módulo de Suporte ao Estagiário (LucyAcessível IA - Clínica):
-
-Função: Assistente de consulta rápida para estagiários sobre protocolos clínicos e normas internas.
-
-Diferencial: Baseado em um motor de regras para garantir que as orientações técnicas sejam seguras e padronizadas pela clínica.
+---
+**Desenvolvido por:** Luciana da Silva Reis  
+*Engenharia de Software - UNINTER*

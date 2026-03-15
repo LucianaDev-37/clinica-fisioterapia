@@ -1,42 +1,63 @@
 {% extends 'base.html' %}
 
-{% block title %}Login - Clínica Fisioterapia{% endblock %}
+{% block title %}Login - Clínica de Fisioterapia{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center align-items-center" style="min-height: 70vh;">
-    <div class="col-md-4">
-        <div class="card shadow-lg border-0 rounded-4">
-            <div class="card-body p-5">
-                <h2 class="text-center fw-bold mb-4">Login</h2>
-                
-                <form method="post">
-                    {% csrf_token %}
+<div class="container" style="min-height: 85vh; display: flex; align-items: center; justify-content: center;">
+    
+    <div class="row justify-content-center w-100">
+        <div class="col-md-5 col-lg-4 col-11">
+            
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-sm-5 p-4">
                     
-                    <div class="mb-3">
-                        <label for="id_username" class="form-label text-muted">Usuário:</label>
-                        <input type="text" name="username" class="form-control form-control-lg border-2" id="id_username" required>
+                    <div class="text-center mb-4">
+                        <div class="bg-light d-inline-block p-3 rounded-circle mb-3">
+                            <i class="bi bi-heart-pulse fs-1" style="color: #6610f2;"></i>
+                        </div>
+                        <h2 class="fw-bold mb-1 fs-3">Clínica de Fisioterapia</h2>
+                        <p class="text-muted small">Sistema de Gestão - Clínica Escola</p>
                     </div>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label fw-bold small text-muted">Usuário</label>
+                            <div class="input-group shadow-sm rounded">
+                                <span class="input-group-text bg-white border-2 border-end-0"><i class="bi bi-person text-muted"></i></span>
+                                <input type="text" name="username" class="form-control form-control-lg border-2 border-start-0 fs-6" id="id_username" placeholder="Digite seu usuário" required>
+                            </div>
+                        </div>
 
-                    <div class="mb-4">
-                        <label for="id_password" class="form-label text-muted">Senha:</label>
-                        <input type="password" name="password" class="form-control form-control-lg border-2" id="id_password" required>
+                        <div class="mb-4">
+                            <label for="id_password" class="form-label fw-bold small text-muted">Senha</label>
+                            <div class="input-group shadow-sm rounded">
+                                <span class="input-group-text bg-white border-2 border-end-0"><i class="bi bi-key text-muted"></i></span>
+                                <input type="password" name="password" class="form-control form-control-lg border-2 border-start-0 fs-6" id="id_password" placeholder="********" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold shadow-sm mb-3" style="background-color: #6610f2; border: none;">
+                            Entrar no Sistema
+                        </button>
+
+                        <div class="text-center">
+                            <a href="{% url 'password_reset' %}" class="text-decoration-none small text-muted">
+                                <i class="bi bi-question-circle"></i> Esqueci minha senha
+                            </a>
+                        </div>
+                    </form>
+
+                    <div class="mt-4 text-center border-top pt-3">
+                        <small class="text-muted">
+                            <i class="bi bi-info-circle"></i> Acesso para Preceptores e Estagiários.
+                        </small>
                     </div>
-
-                    <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold shadow-sm mb-3" style="background-color: #6610f2; border: none;">
-                        Entrar
-                    </button>
-
-                    <div class="text-center">
-                        <a href="{% url 'password_reset' %}" class="text-decoration-none small text-muted">
-                            <i class="bi bi-question-circle"></i> Esqueci minha senha
-                        </a>
-                    </div>
-                </form>
-
-                <div class="mt-4 text-center border-top pt-3">
-                    <small class="text-muted italic">Acesso exclusivo para funcionários.</small>
+                    
                 </div>
             </div>
+            
         </div>
     </div>
 </div>

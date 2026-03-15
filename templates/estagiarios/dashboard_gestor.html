@@ -3,51 +3,80 @@
 {% block title %}Dashboard do Gestor{% endblock %}
 
 {% block content %}
-<h2 class="mb-4">Dashboard do Gestor</h2>
-
-<div class="row">
-    <div class="col-md-3">
-        <div class="card bg-primary text-white mb-3 shadow-sm border-0">
-            <div class="card-body">
-                <h5><i class="bi bi-person-heart"></i> Pacientes</h5>
-                <h3>{{ total_pacientes }}</h3>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card bg-success text-white mb-3 shadow-sm border-0">
-            <div class="card-body">
-                <h5><i class="bi bi-person-badge"></i> Estagiários</h5>
-                <h3>{{ total_estagiarios }}</h3>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card bg-warning text-dark mb-3 shadow-sm border-0">
-            <div class="card-body">
-                <h5><i class="bi bi-calendar-event"></i> Agendamentos</h5>
-                <h3>{{ total_agendamentos }}</h3>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card bg-danger text-white mb-3 shadow-sm border-0">
-            <div class="card-body">
-                <h5><i class="bi bi-journal-check"></i> Evoluções</h5>
-                <h3>{{ total_evolucoes }}</h3>
-            </div>
-        </div>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Dashboard do Gestor</h2>
+    <div>
+        <span class="badge bg-dark">Setor: Fisioterapia</span>
     </div>
 </div>
 
 <hr>
 
-<div class="row mb-5">
-    <div class="col-md-10 mx-auto">
-        <div class="card shadow-sm border-0 p-4">
-            <h5 class="fw-bold text-muted mb-4 text-center">Resumo de Atividades da Clínica</h5>
-            <div style="position: relative; height: 300px;">
-                <canvas id="graficoClinica"></canvas>
+<div class="card shadow-sm border-0 mb-4 bg-light">
+    <div class="card-body">
+        <form method="GET" class="row g-3 align-items-center">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+                    <input type="text" name="usuario_busca" class="form-control border-start-0" 
+                           placeholder="Pesquisar por nome de usuário..." value="{{ usuario_busca|default:'' }}">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-dark w-100">
+                    <i class="bi bi-filter"></i> Filtrar
+                </button>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" name="exportar" value="1" class="btn btn-outline-success w-100">
+                    <i class="bi bi-file-earmark-spreadsheet"></i> Exportar CSV
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<input type="hidden" id="data-pacientes" value="{{ total_pacientes|default:0 }}">
+<input type="hidden" id="data-estagiarios" value="{{ total_estagiarios|default:0 }}">
+<input type="hidden" id="data-agendamentos" value="{{ total_agendamentos|default:0 }}">
+<input type="hidden" id="data-evolucoes" value="{{ total_evolucoes|default:0 }}">
+
+<div id="chart-data" 
+     data-labels='[{% for item in alertas_por_dia %}"{{ item.data_hora__date|date:"d/m" }}"{% if not forloop.last %},{% endif %}{% endfor %}]'
+     data-values='[{% for item in alertas_por_dia %}{{ item.total|default:0 }}{% if not forloop.last %},{% endif %}{% endfor %}]'
+     style="display: none;">
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white shadow-sm border-0">
+            <div class="card-body">
+                <h6><i class="bi bi-person-heart"></i> Pacientes</h6>
+                <h3>{{ total_pacientes|default:0 }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white shadow-sm border-0">
+            <div class="card-body">
+                <h6><i class="bi bi-person-badge"></i> Estagiários</h6>
+                <h3>{{ total_estagiarios|default:0 }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-dark shadow-sm border-0">
+            <div class="card-body">
+                <h6><i class="bi bi-calendar-event"></i> Agendamentos</h6>
+                <h3>{{ total_agendamentos|default:0 }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-danger text-white shadow-sm border-0">
+            <div class="card-body">
+                <h6><i class="bi bi-journal-check"></i> Evoluções</h6>
+                <h3>{{ total_evolucoes|default:0 }}</h3>
             </div>
         </div>
     </div>
@@ -55,9 +84,28 @@
 
 <div class="row mb-5">
     <div class="col-md-6">
-        <div class="card shadow-sm border-0">
+        <div class="card shadow-sm border-0 p-4 h-100">
+            <h5 class="fw-bold text-muted mb-4 text-center">Resumo de Atividades</h5>
+            <div style="position: relative; height: 300px;">
+                <canvas id="graficoClinica"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 p-4 h-100 border-top border-danger border-4">
+            <h5 class="fw-bold text-danger mb-4 text-center">Tendência de Alertas</h5>
+            <div style="position: relative; height: 300px;">
+                <canvas id="graficoSeguranca"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
             <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0 small fw-bold">Histórico de Alterações</h5>
+                <h5 class="mb-0 small fw-bold">Logs de Alterações (Audit)</h5>
                 <i class="bi bi-list-check"></i>
             </div>
             <div class="card-body p-0">
@@ -67,7 +115,7 @@
                             <tr>
                                 <th class="ps-3">Usuário</th>
                                 <th>Ação</th>
-                                <th>Data/Hora</th>
+                                <th>Data</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -82,7 +130,7 @@
                                 <td><small class="text-muted">{{ log.data_hora|date:"d/m H:i" }}</small></td>
                             </tr>
                             {% empty %}
-                            <tr><td colspan="3" class="text-center py-3">Nenhum log registrado.</td></tr>
+                            <tr><td colspan="3" class="text-center py-3">Nenhuma alteração recente.</td></tr>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -92,7 +140,7 @@
     </div>
 
     <div class="col-md-6">
-        <div class="card shadow-sm border-0 border-start border-danger border-4">
+        <div class="card shadow-sm border-0 border-start border-danger border-4 h-100">
             <div class="card-header bg-white d-flex justify-content-between align-items-center">
                 <h5 class="mb-0 small fw-bold text-danger">Alertas de Segurança</h5>
                 <i class="bi bi-shield-exclamation text-danger"></i>
@@ -103,13 +151,13 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                         <div>
                             <span class="text-danger fw-bold">{{ alerta.usuario.username }}</span> 
-                            <small class="d-block text-muted">Tentou acessar: {{ alerta.pagina_tentada }}</small>
+                            <small class="d-block text-muted">Acesso negado em: {{ alerta.pagina_tentada }}</small>
                         </div>
                         <span class="badge rounded-pill bg-light text-danger">{{ alerta.data_hora|date:"H:i" }}</span>
                     </li>
                     {% empty %}
                     <li class="list-group-item text-center text-success border-0 py-4">
-                        <i class="bi bi-check-circle-fill"></i> Nenhuma atividade suspeita.
+                        <i class="bi bi-check-circle-fill"></i> Sistema operando com segurança.
                     </li>
                     {% endfor %}
                 </ul>
@@ -118,31 +166,27 @@
     </div>
 </div>
 
-<h4>Atalhos</h4>
-<div class="list-group shadow-sm mb-5">
-    <a href="/pacientes/" class="list-group-item list-group-item-action">Gerenciar Pacientes</a>
-    <a href="/estagiarios/" class="list-group-item list-group-item-action">Gerenciar Estagiários</a>
-    <a href="/agendamentos/" class="list-group-item list-group-item-action">Ver Agendamentos</a>
-    <a href="/evolucoes/" class="list-group-item list-group-item-action">Histórico de Evoluções</a>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const ctx = document.getElementById('graficoClinica');
-        if (ctx) {
-            new Chart(ctx, {
+        const totalPacientes = parseInt(document.getElementById('data-pacientes').value) || 0;
+        const totalEstagiarios = parseInt(document.getElementById('data-estagiarios').value) || 0;
+        const totalAgendamentos = parseInt(document.getElementById('data-agendamentos').value) || 0;
+        const totalEvolucoes = parseInt(document.getElementById('data-evolucoes').value) || 0;
+
+        const container = document.getElementById('chart-data');
+        const labelsAlertas = JSON.parse(container.getAttribute('data-labels') || '[]');
+        const dadosAlertas = JSON.parse(container.getAttribute('data-values') || '[]');
+
+        const ctxClinica = document.getElementById('graficoClinica');
+        if (ctxClinica) {
+            new Chart(ctxClinica, {
                 type: 'bar',
                 data: {
                     labels: ['Pacientes', 'Estagiários', 'Agendamentos', 'Evoluções'],
                     datasets: [{
                         label: 'Total',
-                        data: [
-                            Number("{{ total_pacientes|default:0 }}"), 
-                            Number("{{ total_estagiarios|default:0 }}"), 
-                            Number("{{ total_agendamentos|default:0 }}"), 
-                            Number("{{ total_evolucoes|default:0 }}")
-                        ],
+                        data: [totalPacientes, totalEstagiarios, totalAgendamentos, totalEvolucoes],
                         backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545'],
                         borderRadius: 10
                     }]
@@ -150,9 +194,30 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    }
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        const ctxSeguranca = document.getElementById('graficoSeguranca');
+        if (ctxSeguranca) {
+            new Chart(ctxSeguranca, {
+                type: 'line',
+                data: {
+                    labels: labelsAlertas,
+                    datasets: [{
+                        label: 'Tentativas Indevidas',
+                        data: dadosAlertas,
+                        borderColor: '#dc3545',
+                        backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
                 }
             });
         }

@@ -2,13 +2,13 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # ESSA É A LINHA QUE ESTÁ FALTANDO:
-    path('home-redirect/', views.home_redirect, name='home_redirect'),
-
-    # Painéis
+    # Dashboards
     path('painel-gestores/', views.dashboard_gestor, name='dashboard_gestor'),
     path('painel-estagiarios/', views.dashboard_estagiario, name='dashboard_estagiario'),
     
+    # Rota de Redirecionamento
+    path('redirecionar/', views.home_redirect, name='home_redirect'),
+
     # CRUD Estagiários
     path('', views.listar_estagiarios, name='listar_estagiarios'),
     path('cadastrar/', views.cadastrar_estagiario, name='cadastrar_estagiario'),

@@ -1,6 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">Clínica Fisioterapia</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 shadow-sm">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand fw-bold" href="/">
+            <i class="bi bi-heart-pulse-fill text-info me-2"></i>Clínica Fisioterapia
+        </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -11,49 +13,47 @@
                 {% if user.is_authenticated %}
                     {% if user.groups.all.0.name == 'Gestores' %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/estagiarios/painel-gestores/">Início</a>
+                            <a class="nav-link" href="/estagiarios/painel-gestores/"><i class="bi bi-house-door"></i> Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/estagiarios/"><i class="bi bi-mortarboard"></i> Estagiários</a>
                         </li>
                     {% elif user.groups.all.0.name == 'Estagiarios' %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/estagiarios/painel-estagiarios/">Início</a>
-                        </li>
-                    {% endif %}
-
-                    {% if user.groups.all.0.name == 'Gestores' %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/estagiarios/">Estagiários</a>
+                            <a class="nav-link" href="/estagiarios/painel-estagiarios/"><i class="bi bi-house-door"></i> Início</a>
                         </li>
                     {% endif %}
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/pacientes/">Pacientes</a>
+                        <a class="nav-link" href="/pacientes/"><i class="bi bi-people"></i> Pacientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/agendamentos/">Agendamentos</a>
+                        <a class="nav-link" href="/agendamentos/"><i class="bi bi-calendar3"></i> Agendamentos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/evolucoes/">Evoluções</a>
+                        <a class="nav-link" href="/evolucoes/"><i class="bi bi-file-earmark-medical"></i> Evoluções</a>
                     </li>
                 {% endif %}
             </ul>
 
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-center">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <span class="navbar-text text-white me-3">
-                            Olá, {{ user.username }}
+                        <span class="navbar-text text-white me-3 bg-secondary px-3 py-1 rounded-pill small">
+                            <i class="bi bi-person-circle me-1"></i> {{ user.username }}
                         </span>
-                    </li> <li class="nav-item">
+                    </li> 
+                    <li class="nav-item">
                         <form action="/logout/" method="post" class="d-inline">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-link nav-link" style="text-decoration: none;">
-                                Sair
+                            <button type="submit" class="btn btn-outline-danger btn-sm border-0">
+                                <i class="bi bi-box-arrow-right"></i> Sair
                             </button>
                         </form>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="btn btn-outline-light" href="/login/">Login</a>
+                        <a class="btn btn-outline-light btn-sm px-4" href="/login/">Login</a>
                     </li>
                 {% endif %}
             </ul>
