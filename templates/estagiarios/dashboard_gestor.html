@@ -6,54 +6,94 @@
 <h2 class="mb-4">Dashboard do Gestor</h2>
 
 <div class="row">
-
     <div class="col-md-3">
-        <div class="card bg-primary text-white mb-3">
+        <div class="card bg-primary text-white mb-3 shadow-sm border-0">
             <div class="card-body">
-                <h5>Total de Pacientes</h5>
+                <h5><i class="bi bi-person-heart"></i> Pacientes</h5>
                 <h3>{{ total_pacientes }}</h3>
             </div>
         </div>
     </div>
 
     <div class="col-md-3">
-        <div class="card bg-success text-white mb-3">
+        <div class="card bg-success text-white mb-3 shadow-sm border-0">
             <div class="card-body">
-                <h5>Total de Estagiários</h5>
+                <h5><i class="bi bi-person-badge"></i> Estagiários</h5>
                 <h3>{{ total_estagiarios }}</h3>
             </div>
         </div>
     </div>
 
     <div class="col-md-3">
-        <div class="card bg-warning text-white mb-3">
+        <div class="card bg-warning text-dark mb-3 shadow-sm border-0">
             <div class="card-body">
-                <h5>Agendamentos</h5>
+                <h5><i class="bi bi-calendar-event"></i> Agendamentos</h5>
                 <h3>{{ total_agendamentos }}</h3>
             </div>
         </div>
     </div>
 
     <div class="col-md-3">
-        <div class="card bg-danger text-white mb-3">
+        <div class="card bg-danger text-white mb-3 shadow-sm border-0">
             <div class="card-body">
-                <h5>Evoluções Registradas</h5>
+                <h5><i class="bi bi-journal-check"></i> Evoluções</h5>
                 <h3>{{ total_evolucoes }}</h3>
             </div>
         </div>
     </div>
-
 </div>
 
 <hr>
 
-<h4>Atalhos</h4>
+<div class="row mb-5">
+    <div class="col-md-10 mx-auto">
+        <div class="card shadow-sm border-0 p-4">
+            <h5 class="fw-bold text-muted mb-4 text-center">Resumo de Atividades da Clínica</h5>
+            <div style="position: relative; height: 350px;">
+                <canvas id="graficoClinica"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div class="list-group">
+<h4>Atalhos</h4>
+<div class="list-group shadow-sm mb-5">
     <a href="/pacientes/" class="list-group-item list-group-item-action">Gerenciar Pacientes</a>
     <a href="/estagiarios/" class="list-group-item list-group-item-action">Gerenciar Estagiários</a>
     <a href="/agendamentos/" class="list-group-item list-group-item-action">Ver Agendamentos</a>
     <a href="/evolucoes/" class="list-group-item list-group-item-action">Histórico de Evoluções</a>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const ctx = document.getElementById('graficoClinica');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Pacientes', 'Estagiários', 'Agendamentos', 'Evoluções'],
+                    datasets: [{
+                        label: 'Total',
+                        data: [
+                            Number("{{ total_pacientes|default:0 }}"), 
+                            Number("{{ total_estagiarios|default:0 }}"), 
+                            Number("{{ total_agendamentos|default:0 }}"), 
+                            Number("{{ total_evolucoes|default:0 }}")
+                        ],
+                        backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545'],
+                        borderRadius: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+    });
+</script>
 {% endblock %}

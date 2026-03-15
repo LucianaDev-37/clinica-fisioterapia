@@ -1,41 +1,55 @@
 {% extends 'base.html' %}
 
-{% block title %}Estagiários{% endblock %}
+{% block title %}Lista de Estagiários{% endblock %}
 
 {% block content %}
-<h2 class="mb-3">Lista de Estagiários</h2>
+<div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+    <h2>Lista de Estagiários</h2>
+    <a href="{% url 'dashboard_gestor' %}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Voltar ao Dashboard
+    </a>
+</div>
 
-<a href="/estagiarios/cadastrar/" class="btn btn-primary mb-3">Cadastrar Estagiário</a>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="{% url 'cadastrar_estagiario' %}" class="btn btn-primary">Cadastrar Estagiário</a>
+            
+            <form method="GET" action="{% url 'listar_estagiarios' %}" class="d-flex w-50">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Buscar estagiário..." value="{{ request.GET.search }}">
+                    <button class="btn btn-outline-primary" type="submit">🔍 Buscar</button>
+                </div>
+            </form>
+        </div>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for estagiario in estagiarios %}
-        <tr>
-            <td>{{ estagiario.nome }}</td> 
-            <td>{{ estagiario.email }}</td>
-            <td>
-                <a href="{% url 'detalhes_estagiario' estagiario.id %}" class="btn btn-info btn-sm">Ver</a>
-                
-                <a href="{% url 'editar_estagiario' estagiario.id %}" class="btn btn-warning">
-                Editar
-                </a>
-                
-                <a href="{% url 'deletar_estagiario' estagiario.id %}" class="btn btn-danger btn-sm">Excluir</a>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="3" class="text-center">Nenhum estagiário encontrado.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="ps-3">Nome</th>
+                        <th>Email</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for estagiario in estagiarios %}
+                    <tr>
+                        <td class="ps-3">{{ estagiario.nome }}</td>
+                        <td>{{ estagiario.email }}</td>
+                        <td class="text-center">
+                            <a href="{% url 'editar_estagiario' estagiario.id %}" class="btn btn-sm btn-warning">Editar</a>
+                            <a href="{% url 'deletar_estagiario' estagiario.id %}" class="btn btn-sm btn-danger">Excluir</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center text-muted py-4">Nenhum estagiário encontrado.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

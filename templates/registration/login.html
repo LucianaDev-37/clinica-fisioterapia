@@ -1,34 +1,43 @@
 {% extends 'base.html' %}
 
-{% block title %}Entrar{% endblock %}
+{% block title %}Login - Clínica Fisioterapia{% endblock %}
 
 {% block content %}
-
-<div class="row justify-content-center mt-5">
+<div class="row justify-content-center align-items-center" style="min-height: 70vh;">
     <div class="col-md-4">
-
-        <div class="card shadow-sm border-0">
-            <div class="card-body">
-
-                <h3 class="text-center mb-4">Login</h3>
-
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body p-5">
+                <h2 class="text-center fw-bold mb-4">Login</h2>
+                
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    
+                    <div class="mb-3">
+                        <label for="id_username" class="form-label text-muted">Usuário:</label>
+                        <input type="text" name="username" class="form-control form-control-lg border-2" id="id_username" required>
+                    </div>
 
-                    <button type="submit" class="btn btn-primary w-100">
+                    <div class="mb-4">
+                        <label for="id_password" class="form-label text-muted">Senha:</label>
+                        <input type="password" name="password" class="form-control form-control-lg border-2" id="id_password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold shadow-sm mb-3" style="background-color: #6610f2; border: none;">
                         Entrar
                     </button>
+
+                    <div class="text-center">
+                        <a href="{% url 'password_reset' %}" class="text-decoration-none small text-muted">
+                            <i class="bi bi-question-circle"></i> Esqueci minha senha
+                        </a>
+                    </div>
                 </form>
 
+                <div class="mt-4 text-center border-top pt-3">
+                    <small class="text-muted italic">Acesso exclusivo para funcionários.</small>
+                </div>
             </div>
         </div>
-
-        <p class="text-muted text-center mt-3">
-            Acesso exclusivo para funcionários.
-        </p>
-
     </div>
 </div>
-
 {% endblock %}

@@ -1,33 +1,65 @@
 {% extends 'base.html' %}
 
-{% block title %}Evoluções{% endblock %}
+{% block title %}Evoluções dos Pacientes{% endblock %}
 
 {% block content %}
-<h2>Evoluções dos Pacientes</h2>
+<div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+    <h2>Evoluções dos Pacientes</h2>
+    <a href="{% url 'dashboard_gestor' %}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Voltar ao Dashboard
+    </a>
+</div>
 
-<a class="btn btn-primary mb-3" href="{% url 'cadastrar_evolucao' %}">Registrar Nova Evolução</a>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="{% url 'cadastrar_evolucao' %}" class="btn btn-primary">Registrar Nova Evolução</a>
+            
+            <form method="GET" action="{% url 'listar_evolucoes' %}" class="d-flex w-50">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Buscar por paciente..." value="{{ request.GET.search }}">
+                    <button class="btn btn-outline-primary" type="submit">🔍 Buscar</button>
+                </div>
+            </form>
+        </div>
 
-<table class="table table-bordered">
-    <tr>
-        <th>Paciente</th>
-        <th>Estagiário</th>
-        <th>Data</th>
-        <th>Descrição</th>
-        <th>Ações</th>
-    </tr>
-
-    {% for ev in evolucoes %}
-    <tr>
-        <td>{{ ev.paciente.nome }}</td>
-        <td>{{ ev.estagiario.nome }}</td>
-        <td>{{ ev.data|date:"d/m/Y H:i" }}</td>
-        <td>{{ ev.descricao }}</td>
-        <td>
-            <a class="btn btn-warning btn-sm" href="{% url 'editar_evolucao' ev.id %}">Editar</a>
-            <a class="btn btn-danger btn-sm" href="{% url 'deletar_evolucao' ev.id %}">Excluir</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="ps-3">Paciente</th>
+                        <th>Estagiário</th>
+                        <th>Data/Hora</th>
+                        <th style="width: 40%;">Descrição</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ev in evolucoes %}
+                    <tr>
+                        <td class="ps-3"><strong>{{ ev.paciente.nome }}</strong></td>
+                        <td>{{ ev.estagiario.nome }}</td>
+                        <td>{{ ev.data_registro|date:"d/m/Y H:i" }}</td>
+                        <td>
+                            <div style="max-height: 60px; overflow-y: auto; font-size: 0.9rem;">
+                                {{ ev.descricao }}
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center gap-2">
+                                <a href="{% url 'editar_evolucao' ev.id %}" class="btn btn-sm btn-warning">Editar</a>
+                                <a href="{% url 'deletar_evolucao' ev.id %}" class="btn btn-sm btn-danger">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted py-4">Nenhuma evolução registrada.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}

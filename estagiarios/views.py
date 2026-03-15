@@ -1,33 +1,43 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Estagiario
 from .forms import EstagiarioForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+
+# Importe os modelos dos outros apps
 from pacientes.models import Paciente
 from agendamentos.models import Agendamento
 from evolucoes.models import Evolucao
-# -------------------------------
-# REDIRECIONAMENTO PÓS-LOGIN
-# -------------------------------
+
+# --- FUNÇÃO DE TESTE PARA SEGURANÇA ---
+def eh_gestor(user):
+    """Verifica se o usuário pertence ao grupo Gestores ou é admin."""
+    return user.groups.filter(name='Gestores').exists() or user.is_superuser
+
+# 1. FUNÇÃO PARA A RAIZ DO SITE
+def pagina_inicial(request):
+    if request.user.is_authenticated:
+        return home_redirect(request)
+    return render(request, 'pagina_inicial.html')
+
+# 2. REDIRECIONAMENTO PÓS-LOGIN
 @login_required
 def home_redirect(request):
     user = request.user
-    if user.groups.filter(name='Gestores').exists():
-        return redirect('painel_gestores')
+    if eh_gestor(user):
+        return redirect('dashboard_gestor')
     elif user.groups.filter(name='Estagiarios').exists():
-        return redirect('painel_estagiarios')
+        return redirect('dashboard_estagiario')
     else:
-        return redirect('listar_estagiarios')
+        # Se não tiver grupo, manda para uma área neutra ou logout
+        return redirect('login')
 
-# -------------------------------
-# PAINÉIS (AGORA ENVIANDO OS DADOS)
-# -------------------------------
+# 3. DASHBOARD DO GESTOR (BLINDADO)
 @login_required
-def painel_gestores(request):
+@user_passes_test(eh_gestor, login_url='dashboard_estagiario')
+def dashboard_gestor(request):
     contexto = {
-        'estagiarios': User.objects.filter(groups__name='Estagiarios'),
         'total_pacientes': Paciente.objects.count(),
         'total_estagiarios': Estagiario.objects.count(),
         'total_agendamentos': Agendamento.objects.count(),
@@ -35,18 +45,22 @@ def painel_gestores(request):
     }
     return render(request, 'estagiarios/dashboard_gestor.html', contexto)
 
+# 4. DASHBOARD DO ESTAGIÁRIO
 @login_required
-def painel_estagiarios(request):
-    # ANTES: 'dashboard_estagiario.html'
-    # AGORA: 'estagiarios/dashboard_estagiario.html'
+def dashboard_estagiario(request):
     return render(request, 'estagiarios/dashboard_estagiario.html')
-# -------------------------------
-# CRUD ESTAGIÁRIOS
-# -------------------------------
+
+# --- CRUD ESTAGIÁRIOS (TODAS BLINDADAS PARA GESTORES) ---
+
+@login_required
+@user_passes_test(eh_gestor, login_url='dashboard_estagiario')
 def listar_estagiarios(request):
-    estagiarios = Estagiario.objects.all()
+    busca = request.GET.get('search')
+    estagiarios = Estagiario.objects.filter(nome__icontains=busca) if busca else Estagiario.objects.all()
     return render(request, 'estagiarios/listar.html', {'estagiarios': estagiarios})
 
+@login_required
+@user_passes_test(eh_gestor, login_url='dashboard_estagiario')
 def cadastrar_estagiario(request):
     if request.method == 'POST':
         form = EstagiarioForm(request.POST)
@@ -58,6 +72,8 @@ def cadastrar_estagiario(request):
         form = EstagiarioForm()
     return render(request, 'estagiarios/form.html', {'form': form})
 
+@login_required
+@user_passes_test(eh_gestor, login_url='dashboard_estagiario')
 def editar_estagiario(request, id):
     estagiario = get_object_or_404(Estagiario, id=id)
     if request.method == 'POST':
@@ -70,6 +86,8 @@ def editar_estagiario(request, id):
         form = EstagiarioForm(instance=estagiario)
     return render(request, 'estagiarios/form.html', {'form': form})
 
+@login_required
+@user_passes_test(eh_gestor, login_url='dashboard_estagiario')
 def deletar_estagiario(request, id):
     estagiario = get_object_or_404(Estagiario, id=id)
     if request.method == 'POST':
@@ -78,10 +96,8 @@ def deletar_estagiario(request, id):
         return redirect('listar_estagiarios')
     return render(request, 'estagiarios/deletar.html', {'estagiario': estagiario})
 
-# -------------------------------
-# DETALHES DO ESTAGIÁRIO
-# -------------------------------
+@login_required
+@user_passes_test(eh_gestor, login_url='dashboard_estagiario')
 def detalhes_estagiario(request, id):
-    # Busca o estagiário pelo ID ou retorna 404 se não existir
     estagiario = get_object_or_404(Estagiario, id=id)
     return render(request, 'estagiarios/detalhes.html', {'estagiario': estagiario})

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if form.instance.pk %}Editar Agendamento{% else %}Novo Agendamento{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        {% if form.instance.pk %}Alterar Horário{% else %}Agendar Consulta{% endif %}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="mt-4 d-flex justify-content-between">
+                            <a href="{% url 'listar_agendamentos' %}" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-success">
+                                {% if form.instance.pk %}Salvar Alterações{% else %}Confirmar Agendamento{% endif %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

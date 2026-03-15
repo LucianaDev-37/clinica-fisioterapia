@@ -6,7 +6,6 @@ def listar_evolucoes(request):
     evolucoes = Evolucao.objects.all().order_by('-data')
     return render(request, 'evolucoes/listar.html', {'evolucoes': evolucoes})
 
-
 def cadastrar_evolucao(request):
     if request.method == 'POST':
         form = EvolucaoForm(request.POST)
@@ -15,13 +14,11 @@ def cadastrar_evolucao(request):
             return redirect('listar_evolucoes')
     else:
         form = EvolucaoForm()
-
-    return render(request, 'evolucoes/cadastrar.html', {'form': form})
-
+    # CORREÇÃO: Mudei para form.html
+    return render(request, 'evolucoes/form.html', {'form': form})
 
 def editar_evolucao(request, id):
     evolucao = get_object_or_404(Evolucao, id=id)
-
     if request.method == 'POST':
         form = EvolucaoForm(request.POST, instance=evolucao)
         if form.is_valid():
@@ -29,15 +26,13 @@ def editar_evolucao(request, id):
             return redirect('listar_evolucoes')
     else:
         form = EvolucaoForm(instance=evolucao)
-
-    return render(request, 'evolucoes/editar.html', {'form': form, 'evolucao': evolucao})
-
+    # CORREÇÃO: Mudei para form.html
+    return render(request, 'evolucoes/form.html', {'form': form, 'evolucao': evolucao})
 
 def deletar_evolucao(request, id):
     evolucao = get_object_or_404(Evolucao, id=id)
-
     if request.method == 'POST':
         evolucao.delete()
         return redirect('listar_evolucoes')
-
+    # Aqui você pode manter o deletar.html ou redirecionar direto
     return render(request, 'evolucoes/deletar.html', {'evolucao': evolucao})

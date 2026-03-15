@@ -5,14 +5,23 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
     <h2>Lista de Pacientes</h2>
-    <a href="{% url 'painel_gestores' %}" class="btn btn-outline-secondary">
+    <a href="{% url 'dashboard_gestor' %}" class="btn btn-outline-secondary">
         <i class="bi bi-arrow-left"></i> Voltar ao Dashboard
     </a>
 </div>
 
 <div class="card shadow-sm">
     <div class="card-body">
-        <a href="{% url 'cadastrar_paciente' %}" class="btn btn-primary mb-3">+ Novo Paciente</a>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="{% url 'cadastrar_paciente' %}" class="btn btn-primary">+ Novo Paciente</a>
+            
+            <form method="GET" action="{% url 'listar_pacientes' %}" class="d-flex w-50">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Buscar por nome..." value="{{ request.GET.search }}">
+                    <button class="btn btn-outline-primary" type="submit">🔍 Buscar</button>
+                </div>
+            </form>
+        </div>
         
         <div class="table-responsive">
             <table class="table table-hover align-middle">
@@ -27,7 +36,14 @@
                     {% for paciente in pacientes %}
                     <tr>
                         <td>{{ paciente.nome }}</td>
-                        <td>{{ paciente.telefone }}</td>
+                        <td>
+                            {% if paciente.telefone %}
+                                {# FILTRO DE EXIBIÇÃO: (11) 99999-9999 #}
+                                ({{ paciente.telefone|slice:":2" }}) {{ paciente.telefone|slice:"2:7" }}-{{ paciente.telefone|slice:"7:" }}
+                            {% else %}
+                                <span class="text-muted">Não informado</span>
+                            {% endif %}
+                        </td>
                         <td class="text-center">
                             <a href="{% url 'editar_paciente' paciente.id %}" class="btn btn-sm btn-warning">Editar</a>
                             <a href="{% url 'deletar_paciente' paciente.id %}" class="btn btn-sm btn-danger">Excluir</a>
@@ -36,7 +52,7 @@
                     {% empty %}
                     <tr>
                         <td colspan="3" class="text-center text-muted py-4">
-                            Nenhum paciente cadastrado ainda.
+                            Nenhum paciente encontrado.
                         </td>
                     </tr>
                     {% endfor %}

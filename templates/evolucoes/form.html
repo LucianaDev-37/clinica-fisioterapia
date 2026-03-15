@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if form.instance.pk %}Editar Evolução{% else %}Nova Evolução{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-9"> <div class="card shadow">
+                <div class="card-header bg-info text-white"> <h4 class="mb-0">
+                        {% if form.instance.pk %}Editar Registro de Evolução{% else %}Nova Evolução Clínica{% endif %}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="mt-4 d-flex justify-content-between">
+                            <a href="{% url 'listar_evolucoes' %}" class="btn btn-secondary">Voltar</a>
+                            <button type="submit" class="btn btn-success">
+                                {% if form.instance.pk %}Salvar Alterações{% else %}Registrar Evolução{% endif %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
