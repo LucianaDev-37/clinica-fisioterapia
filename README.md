@@ -67,18 +67,18 @@ python manage.py runserver
 
 ### Tela de Login
 <p align="center">
-  <img src="images/login.png" width="60%">
+  <img src="https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/login.png" width="60%">
 </p>
 
 ### Dashboards do Sistema
 <p align="center">
-  <img src="images/gestor.png" width="45%">
-  <img src="images/estagiario.png" width="45%">
+  <img src="https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/gestor.png" width="45%">
+  <img src="https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/estagiario.png" width="45%">
 </p>
 
 ### Gestão de Pacientes
 <p align="center">
-  <img src="images/pacientes.png" width="60%">
+  <img src="https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/pacientes.png" width="60%">
 </p>
 
 ---
