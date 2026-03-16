@@ -1,5 +1,10 @@
 # 🏥 Sistema de Gestão para Clínica Escola de Fisioterapia
 
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Django](https://img.shields.io/badge/Django-Framework-green)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple)
+![SQLite](https://img.shields.io/badge/Database-SQLite-lightgrey)
+
 ## 📋 Sobre o Projeto
 Este software foi desenvolvido como parte da disciplina de **Atividade Extensionista do curso de Engenharia de Software (UNINTER)**. O projeto visa automatizar processos administrativos e clínicos, unindo a gestão acadêmica à segurança de dados em um ambiente de saúde.
 
