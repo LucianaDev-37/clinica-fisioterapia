@@ -66,17 +66,22 @@ python manage.py runserver
 ## 📸 Demonstração do Sistema
 
 ### Tela de Login
-![Login](images/login.png)
+<p align="center">
+  <img src="images/login.png" width="600">
+</p>
 
 ### Dashboards do Sistema
 
-| Gestor | Estagiário |
-|-------|------------|
-| ![Gestor](images/gestor.png) | ![Estagiario](images/estagiario.png) |
+<p align="center">
+  <img src="images/gestor.png" width="450">
+  <img src="images/estagiario.png" width="450">
+</p>
 
 ### Gestão de Pacientes
-![Pacientes](images/pacientes.png)
 
+<p align="center">
+  <img src="images/pacientes.png" width="600">
+</p>
 
-**Desenvolvido por:** Luciana da Silva Reis  
+**Desenvolvido por:** Luciana Reis  
 Engenharia de Software - UNINTER
