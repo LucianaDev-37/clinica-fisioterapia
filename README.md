@@ -73,14 +73,14 @@ python manage.py runserver
 ### Dashboards do Sistema
 
 <p align="center">
-  <img src="images/gestor.png" width="200">
-  <img src="images/estagiario.png" width="200">
+  <img src="images/gestor.png" width="300">
+  <img src="images/estagiario.png" width="300">
 </p>
 
 ### Gestão de Pacientes
 
 <p align="center">
-  <img src="images/pacientes.png" width="200">
+  <img src="images/pacientes.png" width="300">
 </p>
 
 **Desenvolvido por:** Luciana Reis  
