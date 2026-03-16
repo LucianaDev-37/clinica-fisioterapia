@@ -27,6 +27,29 @@ Implementação de um sistema de monitoramento de logs:
 * Registro e histórico de evoluções fisioterapêuticas.
 * Controle dinâmico de agendamentos.
 
+## ⚙️ Como executar o projeto
+
+1. Clone o repositório
+
+git clone https://github.com/LucianaDev-37/clinica-fisioterapia.git
+
+2. Entre na pasta do projeto
+
+cd clinica-fisioterapia
+
+3. Instale as dependências
+
+pip install -r requirements.txt
+
+4. Execute as migrações
+
+python manage.py migrate
+
+5. Inicie o servidor
+
+python manage.py runserver
+
+
 ## 🚀 Próximos Passos (Roadmap)
 * **Integração LucyAcessível IA:** Assistente de consulta rápida para protocolos clínicos baseado em motores de regras.
 * **Sistema de Confirmação:** Implementação de Modais para segurança em operações de exclusão de dados.
