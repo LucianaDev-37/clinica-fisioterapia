@@ -5,55 +5,90 @@ Este software foi desenvolvido como parte da disciplina de **Atividade Extension
 
 ## 🛠️ Tecnologias Utilizadas
 * **Backend:** Python 3.x + Django Framework
-* **Frontend:** HTML5, CSS3, Bootstrap 5 (Design Moderno e Responsivo)
-* **Banco de Dados:** SQLite (Desenvolvimento)
+* **Frontend:** HTML5, CSS3, Bootstrap 5
+* **Banco de Dados:** SQLite
 * **Ícones:** Bootstrap Icons
 
 ## 🔐 Funcionalidades e Diferenciais Técnicos
 
 ### 1. Controle de Acesso Inteligente (RBAC)
 O sistema diferencia as jornadas de usuário para garantir a privacidade dos dados:
+
 * **Perfil Gestor:** Painel analítico com métricas de pacientes, agendamentos e controle total de estagiários.
-* **Perfil Estagiário:** Interface otimizada para produtividade, foco em atendimentos diários e registros de evolução.
+* **Perfil Estagiário:** Interface otimizada para produtividade e registros de evolução.
 
-### 2. Módulo de Segurança e Auditoria (Novo!)
-Implementação de um sistema de monitoramento de logs:
-* **Detecção de Intrusão:** Registro automático de tentativas de acesso a URLs restritas.
-* **Dashboard de Alertas:** Gráfico de tendências de alertas e tabela detalhada de incidentes para o gestor.
-* **Exportação CSV:** Ferramenta integrada para gerar relatórios de auditoria em conformidade com boas práticas de gestão de dados.
+### 2. Módulo de Segurança e Auditoria
+* Registro automático de tentativas de acesso a URLs restritas.
+* Dashboard de alertas de segurança.
+* Exportação CSV de relatórios.
 
-### 3. Gestão Clínica Completa
+### 3. Gestão Clínica
 * Gerenciamento de prontuários de pacientes.
-* Registro e histórico de evoluções fisioterapêuticas.
-* Controle dinâmico de agendamentos.
+* Registro de evoluções fisioterapêuticas.
+* Controle de agendamentos.
+
+---
 
 ## ⚙️ Como executar o projeto
 
 1. Clone o repositório
 
+```bash
 git clone https://github.com/LucianaDev-37/clinica-fisioterapia.git
+```
 
 2. Entre na pasta do projeto
 
+```bash
 cd clinica-fisioterapia
+```
 
 3. Instale as dependências
 
+```bash
 pip install -r requirements.txt
+```
 
 4. Execute as migrações
 
+```bash
 python manage.py migrate
+```
 
 5. Inicie o servidor
 
+```bash
 python manage.py runserver
-
-
-## 🚀 Próximos Passos (Roadmap)
-* **Integração LucyAcessível IA:** Assistente de consulta rápida para protocolos clínicos baseado em motores de regras.
-* **Sistema de Confirmação:** Implementação de Modais para segurança em operações de exclusão de dados.
+```
 
 ---
+
+## 📸 Demonstração do Sistema
+
+### Tela de Login
+<p align="center">
+  <img src="images/login.png" width="60%">
+</p>
+
+### Dashboards do Sistema
+<p align="center">
+  <img src="images/gestor.png" width="45%">
+  <img src="images/estagiario.png" width="45%">
+</p>
+
+### Gestão de Pacientes
+<p align="center">
+  <img src="images/pacientes.png" width="60%">
+</p>
+
+---
+
+## 🚀 Próximos Passos (Roadmap)
+
+* Integração de assistente de consulta com IA.
+* Implementação de modais de confirmação para exclusões.
+
+---
+
 **Desenvolvido por:** Luciana da Silva Reis  
-*Engenharia de Software - UNINTER*
+Engenharia de Software - UNINTER
