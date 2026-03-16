@@ -65,27 +65,18 @@ python manage.py runserver
 
 ## 📸 Demonstração do Sistema
 
-## 📸 Demonstração do Sistema
-
 ### Tela de Login
-![Login](https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/login.png)
+![Login](images/login.png)
 
 ### Dashboards do Sistema
 
 | Gestor | Estagiário |
 |-------|------------|
-| ![Gestor](https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/gestor.png) | ![Estagiario](https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/estagiario.png) |
+| ![Gestor](images/gestor.png) | ![Estagiario](images/estagiario.png) |
 
 ### Gestão de Pacientes
-![Pacientes](https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/pacientes.png)
----
+![Pacientes](images/pacientes.png)
 
-## 🚀 Próximos Passos (Roadmap)
-
-* Integração de assistente de consulta com IA.
-* Implementação de modais de confirmação para exclusões.
-
----
 
 **Desenvolvido por:** Luciana da Silva Reis  
 Engenharia de Software - UNINTER
