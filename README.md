@@ -65,22 +65,19 @@ python manage.py runserver
 
 ## 📸 Demonstração do Sistema
 
+## 📸 Demonstração do Sistema
+
 ### Tela de Login
-<p align="center">
-  <img src="https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/login.png" width="60%">
-</p>
+![Login](https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/login.png)
 
 ### Dashboards do Sistema
-<p align="center">
-  <img src="https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/gestor.png" width="45%">
-  <img src="https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/estagiario.png" width="45%">
-</p>
+
+| Gestor | Estagiário |
+|-------|------------|
+| ![Gestor](https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/gestor.png) | ![Estagiario](https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/estagiario.png) |
 
 ### Gestão de Pacientes
-<p align="center">
-  <img src="https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/pacientes.png" width="60%">
-</p>
-
+![Pacientes](https://raw.githubusercontent.com/LucianaDev-37/clinica-fisioterapia/main/clinica_fisioterapia/images/pacientes.png)
 ---
 
 ## 🚀 Próximos Passos (Roadmap)
