@@ -67,20 +67,20 @@ python manage.py runserver
 
 ### Tela de Login
 <p align="center">
-  <img src="images/login.png" width="600">
+  <img src="images/login.png" width="200">
 </p>
 
 ### Dashboards do Sistema
 
 <p align="center">
-  <img src="images/gestor.png" width="450">
-  <img src="images/estagiario.png" width="450">
+  <img src="images/gestor.png" width="200">
+  <img src="images/estagiario.png" width="200">
 </p>
 
 ### Gestão de Pacientes
 
 <p align="center">
-  <img src="images/pacientes.png" width="600">
+  <img src="images/pacientes.png" width="200">
 </p>
 
 **Desenvolvido por:** Luciana Reis  
