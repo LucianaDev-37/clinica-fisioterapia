@@ -4,7 +4,6 @@ from .models import Paciente
 class PacienteForm(forms.ModelForm):
     class Meta:
         model = Paciente
-        # Use apenas os campos que você definiu no models.py
         fields = ['nome', 'telefone', 'data_nascimento', 'observacoes']
         
         widgets = {
